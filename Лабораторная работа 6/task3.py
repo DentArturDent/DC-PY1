@@ -3,18 +3,14 @@ OUTPUT_FILE = "output.csv"
 
 def to_csv_file(filename, headers, rows, delimiter=',', new_line='\n'):
     with open(f'{filename}', 'w') as file:
-        leng = len(headers)
-        for i in range(leng):
-            file.write(headers[i])
-            if i == leng-1:
-                continue
-            file.write(delimiter)
-        file.write(new_line)
+        rows.insert(0, headers)
 
-        for row in rows:
-            for c in range(leng):
-                file.write(row[c])
-                if c == leng-1:
+        leng = len(headers)
+        size = len(rows)
+        for k in range(size):
+            for i in range(leng):
+                file.write(rows[k][i])
+                if i == leng-1:
                     continue
                 file.write(delimiter)
             file.write(new_line)
